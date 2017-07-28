@@ -35,7 +35,7 @@ class ResourceController extends BaseController
         if (!$this->model) {
             throw new ModelNotFoundException();
         }
-        app()->when(ApiResourceInfo::class)
+        app()->when(ResourceInfo::class)
             ->needs('$resourceClass')
             ->give($this->model);
         $this->resourceInfo = app()->make(ResourceInfo::class);
