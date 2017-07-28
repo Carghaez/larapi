@@ -9,7 +9,7 @@ use Illuminate\Database\DatabaseManager;
 use Carghaez\Larapi\Resource\Exception\ResourceNotFoundException;
 use Carghaez\Larapi\Resource\ResourceRepository;
 
-class ApiResourceService
+class ResourceService
 {
     private $auth;
     private $database;
@@ -18,7 +18,7 @@ class ApiResourceService
     public function __construct(
         AuthManager $auth,
         DatabaseManager $database,
-        ApiResourceRepository $repository
+        ResourceRepository $repository
     ) {
         $this->auth = $auth;
         $this->database = $database;

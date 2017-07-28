@@ -38,8 +38,8 @@ class ResourceController extends BaseController
         app()->when(ApiResourceInfo::class)
             ->needs('$resourceClass')
             ->give($this->model);
-        $this->resourceInfo = app()->make(ApiResourceInfo::class);
-        $this->service = app()->make(ApiResourceService::class);
+        $this->resourceInfo = app()->make(ResourceInfo::class);
+        $this->service = app()->make(ResourceService::class);
     }
 
     public function getAll()
