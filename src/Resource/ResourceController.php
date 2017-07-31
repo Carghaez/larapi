@@ -2,19 +2,21 @@
 
 namespace Carghaez\Larapi\Resource;
 
-use Illuminate\Validation\Validator;
+use Validator;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 use Optimus\Bruno\LaravelController as BaseController;
 
 use Carghaez\Larapi\Resource\ResourceService;
+use Carghaez\Larapi\Resource\ResourceRepository;
 use Carghaez\Larapi\Resource\ResourceInfo;
 use Carghaez\Larapi\Resource\Exception\ModelNameNotFoundException;
 
 class ResourceController extends BaseController
 {
     protected $model;
+    protected $repository;
     protected $service;
     protected $resourceInfo;
 
@@ -38,6 +40,15 @@ class ResourceController extends BaseController
         app()->when(ResourceInfo::class)
             ->needs('$resourceClass')
             ->give($this->model);
+        if ($this->repository) {
+            app()->when(ResourceService::class)
+                ->needs('$repository')
+                ->give($this->repository);
+        } else {
+            app()->when(ResourceService::class)
+                ->needs('$repository')
+                ->give(ResourceRepository::class);
+        }
         $this->resourceInfo = app()->make(ResourceInfo::class);
         $this->service = app()->make(ResourceService::class);
     }

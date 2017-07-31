@@ -12,7 +12,8 @@ class ResourceInfo
     /**
     * Returns a lowercase string of class name without namespaces
     */
-    private function get_strlower_class($obj) {
+    private function get_strlower_class($obj)
+    {
         $classname = get_class($obj);
 
         if (preg_match('@\\\\([\w]+)$@', $classname, $matches)) {

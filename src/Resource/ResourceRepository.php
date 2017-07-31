@@ -7,6 +7,15 @@ use Carghaez\Larapi\Resource\ResourceInfo;
 
 class ResourceRepository extends Repository
 {
+    protected function str_random_column_unique($key, $length)
+    {
+        $value = '';
+        do {
+            $value = str_random($length);
+        } while($this->getWhere($key, $value)->isNotEmpty());
+        return $value;
+    }
+
     public function getModel() {
         return (app()->make(ResourceInfo::class))->getModel();
     }

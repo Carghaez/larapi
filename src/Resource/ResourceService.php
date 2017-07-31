@@ -7,7 +7,6 @@ use Illuminate\Database\DatabaseManager;
 // use Illuminate\Events\Dispatcher;
 
 use Carghaez\Larapi\Resource\Exception\ResourceNotFoundException;
-use Carghaez\Larapi\Resource\ResourceRepository;
 
 class ResourceService
 {
@@ -18,11 +17,11 @@ class ResourceService
     public function __construct(
         AuthManager $auth,
         DatabaseManager $database,
-        ResourceRepository $repository
+        $repository
     ) {
         $this->auth = $auth;
         $this->database = $database;
-        $this->repository = $repository;
+        $this->repository = new $repository;
     }
 
     public function getAll($options = [])
