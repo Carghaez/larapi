@@ -4,7 +4,7 @@ namespace Carghaez\Larapi\Auth;
 
 use App;
 use Illuminate\Support\Facades\DB;
-use App\Auth\Exceptions\InvalidCredentialsException;
+use Carghaez\Larapi\Auth\Exceptions\InvalidCredentialsException;
 
 class LoginProxy
 {
