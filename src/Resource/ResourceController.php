@@ -4,7 +4,7 @@ namespace Carghaez\Larapi\Resource;
 
 use Validator;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 use Optimus\Bruno\LaravelController as BaseController;
 
@@ -28,14 +28,14 @@ class ResourceController extends BaseController
 
         $validator = Validator::make($request->all(), $validationRules);
         if ($validator->fails()) {
-            throw new HttpException(401, json_encode($validator->errors()->all()));
+            throw new UnprocessableEntityHttpException($validator->errors()->toJson());
         }
     }
 
     public function __construct()
     {
         if (!$this->model) {
-            throw new ModelNotFoundException();
+            throw new ModelNameNotFoundException();
         }
         app()->when(ResourceInfo::class)
             ->needs('$resourceClass')

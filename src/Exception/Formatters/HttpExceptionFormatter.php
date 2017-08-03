@@ -1,0 +1,17 @@
+<?php
+
+namespace Carghaez\Larapi\Exception\Formatters;
+
+use Exception;
+use Illuminate\Http\JsonResponse;
+use Carghaez\Larapi\Exception\Formatters\ExceptionFormatter;
+
+class HttpExceptionFormatter extends ExceptionFormatter
+{
+    public function format(JsonResponse $response, Exception $e, array $reporterResponses)
+    {
+        parent::format($response, $e, $reporterResponses);
+
+        $response->setStatusCode($e->getStatusCode());
+    }
+}

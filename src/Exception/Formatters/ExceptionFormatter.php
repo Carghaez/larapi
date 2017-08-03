@@ -1,18 +1,16 @@
 <?php
 
-namespace Carghaez\Larapi\Exception;
+namespace Carghaez\Larapi\Exception\Formatters;
 
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Optimus\Heimdal\Formatters\BaseFormatter;
 
-class ApiExceptionFormatter extends BaseFormatter
+class ExceptionFormatter extends BaseFormatter
 {
     public function format(JsonResponse $response, Exception $e, array $reporterResponses)
     {
-        if (!$response->getStatusCode()) {
-            $response->setStatusCode(404);
-        }
+        $response->setStatusCode(500);
         $data = $response->getData(true);
 
         if ($this->debug) {
@@ -24,7 +22,7 @@ class ApiExceptionFormatter extends BaseFormatter
                 'file'   => $e->getFile()
             ]);
         } else {
-            $data['message'] = $e->getMessage();
+            $data['message'] = $this->config['server_error_production'];
         }
 
         $response->setData($data);

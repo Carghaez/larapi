@@ -4,7 +4,7 @@ namespace Carghaez\Larapi\Resource\Exception;
 
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class ModelNotFoundException extends HttpException
+class ModelNameNotFoundException extends HttpException
 {
     public function __construct()
     {

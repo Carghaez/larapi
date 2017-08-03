@@ -23,10 +23,30 @@ class ApiBuildResponse
 
         if($response->headers->get('content-type') == 'application/json')
         {
+            $results = $response->getData(true);
+
+            $error = !$response->isSuccessful();
+
+            if (!$error && isset($results['errors'])) {
+                $error = true;
+            }
+            if (isset($results['status']) && $results['status'] == 'error') {
+                $error = true;
+                unset($results['status']);
+                if ($response->status() !== 200) {
+                    $results['status'] = $response->status();
+                }
+                $results = [
+                    'errors' => [
+                        $results
+                    ]
+                ];
+            }
+
             $baseResponse = [
-                'error' => !$response->isSuccessful(),
+                'error' => $error,
                 'status' => $response->status(),
-                'results' => $response->getData(true)
+                'results' => $results
             ];
             $response->setData($baseResponse);
         }
