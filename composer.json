@@ -13,21 +13,11 @@
             "Carghaez\\Larapi\\": "src/"
         }
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/Carghaez/bruno"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/Carghaez/genie"
-        }
-    ],
     "require": {
         "laravel/framework": "~5.4",
         "optimus/distributed-laravel": "~0.1",
         "optimus/bruno": "~3.0",
-        "optimus/genie": "~1.1",
+        "optimus/genie": "~2.0",
         "optimus/heimdal": "~1.4"
     },
     "minimum-stability": "dev",
