@@ -13,6 +13,12 @@
             "Carghaez\\Larapi\\": "src/"
         }
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Carghaez/genie"
+        }
+    ],
     "require": {
         "laravel/framework": "~5.4",
         "optimus/distributed-laravel": "~0.1",
