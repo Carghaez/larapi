@@ -32,6 +32,8 @@ class UnprocessableEntityHttpExceptionFormatter extends HttpExceptionFormatter
             }, $item));
         }, []);
 
+        $response->setData($data);
+
         return $response;
     }
 }
