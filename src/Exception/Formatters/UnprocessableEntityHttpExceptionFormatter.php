@@ -6,7 +6,7 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use Optimus\Heimdal\Formatters\BaseFormatter;
 
-class UnprocessableEntityHttpExceptionFormatter extends BaseFormatter
+class UnprocessableEntityHttpExceptionFormatter extends HttpExceptionFormatter
 {
     public function format(JsonResponse $response, Exception $e, array $reporterResponses)
     {
@@ -24,15 +24,13 @@ class UnprocessableEntityHttpExceptionFormatter extends BaseFormatter
                 return [
                     'status' => 422,
                     'code' => $e->getCode(),
-                    'title' => 'Validation error',
-                    'detail' => $current
+                    'message'   => $current,
+                    'detail' => (string) $e,
+                    'line'   => $e->getLine(),
+                    'file'   => $e->getFile()
                 ];
             }, $item));
         }, []);
-
-        $response->setData([
-            'errors' => $data
-        ]);
 
         return $response;
     }

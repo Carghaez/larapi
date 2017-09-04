@@ -16,6 +16,8 @@ abstract class ApiRequest extends FormRequest
 
     protected function failedAuthorization()
     {
+        // The request was valid, but the server is refusing action.
+        // The user might not have the necessary permissions for a resource, or may need an account of some sort.
         throw new HttpException(403);
     }
 }

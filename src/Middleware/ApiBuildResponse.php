@@ -37,15 +37,24 @@ class ApiBuildResponse
                     $results['status'] = $response->status();
                 }
                 $results = [
-                    'errors' => [
-                        $results
-                    ]
+                    $results
                 ];
+            }
+
+            $message = '';
+            if (is_string($results)) {
+                $message = $results;
+                $results = null;
+            }
+            if (is_object($results)) {
+                $message = $results->message;
+                $results = $results->data;
             }
 
             $baseResponse = [
                 'error' => $error,
                 'status' => $response->status(),
+                'message' => $message,
                 'results' => $results
             ];
             $response->setData($baseResponse);
