@@ -12,12 +12,12 @@ class ExceptionFormatter extends BaseFormatter
     {
         $response->setStatusCode(500);
         $response->setData(
-            $this->handle($response->getData(true))
+            $this->handle($response->getData(true), $e)
         );
         return $response;
     }
 
-    protected function handle($data)
+    protected function handle($data, $e)
     {
         if ($this->debug) {
             $data = array_merge($data, [
