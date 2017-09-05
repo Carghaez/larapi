@@ -19,18 +19,20 @@ class UnprocessableEntityHttpExceptionFormatter extends HttpExceptionFormatter
             $decoded = [[$e->getMessage()]];
         }
         // Laravel errors are formatted as {"field": [/*errors as strings*/]}
-        $data = array_reduce($decoded, function ($carry, $item) use ($e) {
-            return array_merge($carry, array_map(function ($current) use ($e) {
-                return [
+        $data = [];
+        foreach ($decoded as $key => $item) {
+            if (!is_array($item)) {
+                $item = [$item];
+            }
+            array_push(
+                $data,
+                $this->handle([
                     'status' => 422,
-                    'code' => $e->getCode(),
-                    'message'   => $current,
-                    'detail' => (string) $e,
-                    'line'   => $e->getLine(),
-                    'file'   => $e->getFile()
-                ];
-            }, $item));
-        }, []);
+                    'type' => $key,
+                    'message'   => $item,
+                ], $e)
+            );
+        }
 
         $response->setData($data);
 

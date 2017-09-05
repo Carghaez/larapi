@@ -9,6 +9,14 @@ use Carbon\Carbon;
 
 class ApiBuildResponse
 {
+    protected function isValidationError($data)
+    {
+        if (isset($data[0]['status']) && $data[0]['status'] == 422) {
+            return true;
+        }
+        return false;
+    }
+
     /**
      - Handle an incoming request.
      *
@@ -26,20 +34,22 @@ class ApiBuildResponse
             $results = $response->getData(true);
 
             $error = !$response->isSuccessful();
+            $status = $response->status();
 
-            if (!$error && isset($results['errors'])) {
+            if (!$error && $this->isValidationError($results)) {
                 $error = true;
+                $status = 422;
             }
-            if (isset($results['status']) && $results['status'] == 'error') {
-                $error = true;
-                unset($results['status']);
-                if ($response->status() !== 200) {
-                    $results['status'] = $response->status();
-                }
-                $results = [
-                    $results
-                ];
-            }
+            // if (isset($results['status']) && $results['status'] == 'error') {
+            //     $error = true;
+            //     unset($results['status']);
+            //     if ($response->status() !== 200) {
+            //         $results['status'] = $response->status();
+            //     }
+            //     $results = [
+            //         $results
+            //     ];
+            // }
 
             $message = '';
             if (is_string($results)) {
@@ -53,7 +63,7 @@ class ApiBuildResponse
 
             $baseResponse = [
                 'error' => $error,
-                'status' => $response->status(),
+                'status' => $status,
                 'message' => $message,
                 'results' => $results
             ];
