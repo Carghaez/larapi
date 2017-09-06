@@ -18,6 +18,15 @@ class AuthServiceProvider extends ServiceProvider
         'App\Model' => 'App\Policies\ModelPolicy',
     ];
 
+    proteced function getTokenLifetime()
+    {
+        $socialConfig = $this->app['config']->get('social');
+        if ($socialConfig === null) {
+            return 20;
+        }
+        return $socialConfig['token_lifetime'];
+    }
+
     /**
      * Register any authentication / authorization services.
      *
@@ -34,7 +43,7 @@ class AuthServiceProvider extends ServiceProvider
             $router->forTransientTokens();
         });
 
-        Passport::tokensExpireIn(Carbon::now()->addMinutes(env('APP_TOKEN_MINUTES')));
+        Passport::tokensExpireIn(Carbon::now()->addMinutes($this->getTokenLifetime()));
 
         Passport::refreshTokensExpireIn(Carbon::now()->addDays(10));
     }
