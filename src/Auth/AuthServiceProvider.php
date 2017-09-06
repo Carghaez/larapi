@@ -18,7 +18,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Model' => 'App\Policies\ModelPolicy',
     ];
 
-    proteced function getTokenLifetime()
+    protected function getTokenLifetime()
     {
         $socialConfig = $this->app['config']->get('social');
         if ($socialConfig === null) {
