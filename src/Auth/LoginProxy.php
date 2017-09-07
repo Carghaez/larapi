@@ -3,7 +3,6 @@
 namespace Carghaez\Larapi\Auth;
 
 use App;
-use Illuminate\Support\Facades\DB;
 use Carghaez\Larapi\Auth\Exceptions\InvalidCredentialsException;
 
 class LoginProxy
@@ -36,7 +35,7 @@ class LoginProxy
      */
     public function attemptLogin($email, $password)
     {
-        $user = DB::table('users')->where('email', $email)->first();
+        $user = $this->db->table('users')->where('email', $email)->first();
 
         if (is_null($user)) {
             throw new InvalidCredentialsException();
