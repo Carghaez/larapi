@@ -17,7 +17,7 @@ class ApiBuildResponse
         return false;
     }
 
-    protected function is_array_assoc(array $data)
+    protected function is_array_assoc(array $arr)
     {
         if ([] === $arr)
             return false;
