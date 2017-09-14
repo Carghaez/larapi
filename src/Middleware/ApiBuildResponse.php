@@ -17,9 +17,9 @@ class ApiBuildResponse
         return false;
     }
 
-    protected function is_array_assoc(array $arr)
+    protected function is_array_assoc($arr)
     {
-        if ([] === $arr)
+        if (!$arr || [] === $arr)
             return false;
         return array_keys($arr) !== range(0, count($arr) - 1);
     }
