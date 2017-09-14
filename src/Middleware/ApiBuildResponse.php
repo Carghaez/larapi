@@ -17,6 +17,13 @@ class ApiBuildResponse
         return false;
     }
 
+    protected function is_array_assoc(array $data)
+    {
+        if ([] === $arr)
+            return false;
+        return array_keys($arr) !== range(0, count($arr) - 1);
+    }
+
     /**
      - Handle an incoming request.
      *
@@ -56,9 +63,13 @@ class ApiBuildResponse
                 $message = $results;
                 $results = null;
             }
-            if (is_object($results)) {
-                $message = $results->message;
-                $results = $results->data;
+            if ($this->is_array_assoc($results)) {
+                if (isset($results['message']) && isset($results['data'])) {
+                    $message = $results['message'];
+                    $results = $results['data'];
+                } else {
+                    $results = [$results];
+                }
             }
 
             $baseResponse = [
