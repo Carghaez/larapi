@@ -47,7 +47,7 @@ class RouteServiceProvider extends ServiceProvider
                     }
 
                     $router->group([
-                        'middleware' => $protected ? $middleware : [],
+                        'middleware' => $protected ? $middleware : 'api',
                         'namespace'  => $namespace,
                     ], function ($router) use ($path) {
                         require $path;
