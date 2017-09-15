@@ -63,13 +63,9 @@ class ApiBuildResponse
                 $message = $results;
                 $results = null;
             }
-            if ($this->is_array_assoc($results)) {
-                if (isset($results['message']) && isset($results['data'])) {
-                    $message = $results['message'];
-                    $results = $results['data'];
-                } else {
-                    $results = [$results];
-                }
+            if (isset($results['message']) && isset($results['data'])) {
+                $message = $results['message'];
+                $results = $results['data'];
             }
 
             $baseResponse = [
