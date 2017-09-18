@@ -1,6 +1,6 @@
 <?php
 
-namespace Carghaez\Larapi;
+namespace Carghaez\Larapi\Http;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;

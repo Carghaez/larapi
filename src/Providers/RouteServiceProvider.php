@@ -1,6 +1,6 @@
 <?php
 
-namespace Carghaez\Larapi;
+namespace Carghaez\Larapi\Providers;
 
 use Illuminate\Routing\Router;
 use Optimus\Api\System\RouteServiceProvider as ServiceProvider;
