@@ -12,7 +12,7 @@ class AccessTokenChecker
 {
     private $app;
 
-    private $oAuthMiddleware;
+    private $authenticate;
 
     public function __construct(
         Application $app,
