@@ -24,7 +24,8 @@
         "optimus/distributed-laravel": "~0.1",
         "optimus/bruno": "~3.0",
         "optimus/genie": "~2.0",
-        "optimus/heimdal": "~1.4"
+        "optimus/heimdal": "~1.4",
+        "laravel/passport": "^3.0",
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
