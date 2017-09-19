@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Larapi package.
+ *
+ * (c) Gaetano Carpinato <gaetanocarpinato@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Carghaez\Larapi\Resource;
 
 use Illuminate\Support\ServiceProvider;
@@ -11,6 +20,11 @@ use Carghaez\Larapi\Resource\ResourceInfo;
 use Carghaez\Larapi\Resource\ResourceService;
 use Carghaez\Larapi\Resource\ResourceRepository;
 
+/**
+ * ResourceServiceProvider.
+ *
+ * @author Gaetano Carpinato <gaetanocarpinato@gmail.com>
+ */
 class ResourceServiceProvider extends ServiceProvider
 {
     protected $defer = true;

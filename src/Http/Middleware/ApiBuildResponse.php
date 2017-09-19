@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Larapi package.
+ *
+ * (c) Gaetano Carpinato <gaetanocarpinato@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Carghaez\Larapi\Middleware;
 
 use Closure;
@@ -7,6 +16,11 @@ use Illuminate\Http\Response;
 
 use Carbon\Carbon;
 
+/**
+ * ApiBuildResponse.
+ *
+ * @author Gaetano Carpinato <gaetanocarpinato@gmail.com>
+ */
 class ApiBuildResponse
 {
     protected function isValidationError($data)
@@ -25,12 +39,13 @@ class ApiBuildResponse
     }
 
     /**
-     - Handle an incoming request.
+     * Handle an incoming request.
      *
-     - @param  \Illuminate\Http\Request  $request
-     - @param  \Closure  $next
-     - @param  string|null  $guard
-     - @return mixed
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @param  string|null  $guard
+     *
+     * @return mixed
      */
     public function handle($request, Closure $next, $guard = null)
     {

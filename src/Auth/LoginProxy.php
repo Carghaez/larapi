@@ -1,10 +1,24 @@
 <?php
 
+/*
+ * This file is part of the Larapi package.
+ *
+ * (c) Gaetano Carpinato <gaetanocarpinato@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Carghaez\Larapi\Auth;
 
 use App;
 use Carghaez\Larapi\Auth\Exceptions\InvalidCredentialsException;
 
+/**
+ * LoginProxy.
+ *
+ * @author Gaetano Carpinato <gaetanocarpinato@gmail.com>
+ */
 class LoginProxy
 {
     const REFRESH_TOKEN = 'refreshToken';
@@ -19,6 +33,10 @@ class LoginProxy
 
     private $request;
 
+    /**
+     * Constructor.
+     *
+     */
     public function __construct() {
         $this->apiConsumer = \App::make('apiconsumer');
         $this->auth = \App::make('auth');
@@ -28,7 +46,7 @@ class LoginProxy
     }
 
     /**
-     * Attempt to create an access token using user credentials
+     * Attempt to create an access token using user credentials.
      *
      * @param string $email
      * @param string $password
@@ -49,7 +67,9 @@ class LoginProxy
 
     /**
      * Attempt to refresh the access token used a refresh token that
-     * has been saved in a cookie
+     * has been saved in a cookie.
+     *
+     * @return mixed
      */
     public function attemptRefresh()
     {
@@ -65,6 +85,8 @@ class LoginProxy
      *
      * @param string $grantType what type of grant type should be proxied
      * @param array $data the data to send to the server
+     *
+     * @return mixed
      */
     public function proxy($grantType, array $data = [])
     {

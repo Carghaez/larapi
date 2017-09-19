@@ -1,10 +1,24 @@
 <?php
 
+/*
+ * This file is part of the Larapi package.
+ *
+ * (c) Gaetano Carpinato <gaetanocarpinato@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Carghaez\Larapi\Resource;
 
 use Optimus\Genie\Repository;
 use Carghaez\Larapi\Resource\ResourceInfo;
 
+/**
+ * ResourceRepository.
+ *
+ * @author Gaetano Carpinato <gaetanocarpinato@gmail.com>
+ */
 class ResourceRepository extends Repository
 {
     protected function str_random_column_unique($key, $length)

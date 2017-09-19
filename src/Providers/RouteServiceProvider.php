@@ -1,16 +1,31 @@
 <?php
 
+/*
+ * This file is part of the Larapi package.
+ *
+ * (c) Gaetano Carpinato <gaetanocarpinato@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Carghaez\Larapi\Providers;
 
 use Illuminate\Routing\Router;
 use Optimus\Api\System\RouteServiceProvider as ServiceProvider;
 
+/**
+ * RouteServiceProvider.
+ *
+ * @author Gaetano Carpinato <gaetanocarpinato@gmail.com>
+ */
 class RouteServiceProvider extends ServiceProvider
 {
     /**
      * Define the routes for the application.
      *
      * @param  \Illuminate\Routing\Router  $router
+     *
      * @return void
      */
     public function map(Router $router)

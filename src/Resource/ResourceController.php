@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Larapi package.
+ *
+ * (c) Gaetano Carpinato <gaetanocarpinato@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Carghaez\Larapi\Resource;
 
 use Validator;
@@ -13,6 +22,11 @@ use Carghaez\Larapi\Resource\ResourceRepository;
 use Carghaez\Larapi\Resource\ResourceInfo;
 use Carghaez\Larapi\Resource\Exception\ModelNameNotFoundException;
 
+/**
+ * ResourceController.
+ *
+ * @author Gaetano Carpinato <gaetanocarpinato@gmail.com>
+ */
 class ResourceController extends BaseController
 {
     protected $model;
