@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Carghaez\Larapi\Middleware;
+namespace Carghaez\Larapi\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Response;
