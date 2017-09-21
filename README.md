@@ -49,7 +49,7 @@ PASSWORD_CLIENT_SECRET=FJWQRS3PQj6atM6fz5f6AtDboo59toGplcuUYrKL
 ### How to create a Resource step-by-step
 1. Create a resource folder into App/Http/Resources folder, i.e. Books
 2. Into Books folder, create Controllers and Models folders
-3. Create Book.php into App/Http/Resources/Books/Models folder, i.e.
+3. Create *Book.php* into App/Http/Resources/Books/Models folder, i.e.
 ```
 <?php
 
@@ -61,7 +61,7 @@ class Book extends Model
 {
 }
 ```
-4. Create BookController.php into App/Http/Resources/Books/Controllers, i.e.
+4. Create *BookController.php* into App/Http/Resources/Books/Controllers, i.e.
 ```
 <php
 
@@ -75,7 +75,7 @@ class BookController extends Controller
     protected $model = Book::class;
 }
 ```
-5. Finally, create routes_protected.php and routes_public.php into App/Http/Resources/Books folder, following standard access endpoint of your resource
+5. Finally, create *routes_protected.php* and *routes_public.php* into App/Http/Resources/Books folder, following standard access endpoint of your resource
 
 ### Standard endpoints available for all resources (i.e. Books) :
 
