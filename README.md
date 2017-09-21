@@ -46,6 +46,47 @@ PASSWORD_CLIENT_SECRET=FJWQRS3PQj6atM6fz5f6AtDboo59toGplcuUYrKL
 
 ## Implementation
 
+### How to create a Resource step-by-step
+1. Create a resource folder into App/Http/Resources folder, i.e. Books
+2. Into Books folder, create Controllers and Models folders
+3. Create Book.php into App/Http/Resources/Books/Models folder, i.e.
+```
+<?php
+
+namespace App\Http\Resources\Books\Models;
+
+use Carghaez\Larapi\Resource\ResourceModel as Model;
+
+class Book extends Model
+{
+}
+```
+4. Create BookController.php into App/Http/Resources/Books/Controllers, i.e.
+```
+<php
+
+namespace App\Http\Resources\Books\Controllers;
+
+use Carghaez\Larapi\Resource\ResourceController as Controller;
+use App\Http\Resources\Books\Models\Book;
+
+class BookController extends Controller
+{
+    protected $model = Book::class;
+}
+```
+5. Finally, create routes_protected.php and routes_public.php into App/Http/Resources/Books folder, following standard access endpoint of your resource
+
+### Standard endpoints available for all resources (i.e. Books) :
+
+Function | Method | Route | Description
+-------- | ------ | ----- | -----------
+getAll() | GET | /books |  Get all elements
+getById()| GET | /books/{id} | Get a single element by id
+create() | POST or PUT | /books | Create a new element
+update() | PUT or POST | /books/{id} | Update an exist element
+delete() | DELETE | /books/{id} | Delete a element by id
+
 ## Usage
 The examples will be of a hypothetical resource endpoint `/books` which will return a collection of `Book`,
 each belonging to a `Author`.
