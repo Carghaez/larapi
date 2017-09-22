@@ -50,7 +50,7 @@ PASSWORD_CLIENT_SECRET=FJWQRS3PQj6atM6fz5f6AtDboo59toGplcuUYrKL
 1. Create a resource folder into App/Http/Resources folder, i.e. Books
 2. Into Books folder, create Controllers and Models folders
 3. Create *Book.php* into App/Http/Resources/Books/Models folder, i.e.
-```
+```php
 <?php
 
 namespace App\Http\Resources\Books\Models;
@@ -62,7 +62,7 @@ class Book extends Model
 }
 ```
 4. Create *BookController.php* into App/Http/Resources/Books/Controllers, i.e.
-```
+```php
 <php
 
 namespace App\Http\Resources\Books\Controllers;
