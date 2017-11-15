@@ -58,7 +58,7 @@ class AuthServiceProvider extends ServiceProvider
         Passport::routes(function ($router) {
             $router->forAccessTokens();
             // Uncomment for allowing personal access tokens
-            // $router->forPersonalAccessTokens();
+            $router->forPersonalAccessTokens();
             $router->forTransientTokens();
         });
 
