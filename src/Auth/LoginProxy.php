@@ -95,7 +95,8 @@ class LoginProxy
         $data = array_merge($data, [
             'client_id'     => env('PASSWORD_CLIENT_ID'),
             'client_secret' => env('PASSWORD_CLIENT_SECRET'),
-            'grant_type'    => $grantType
+            'grant_type'    => $grantType,
+            'scope'         => '*'
         ]);
 
         $response = $this->apiConsumer->post('/oauth/token', $data);
