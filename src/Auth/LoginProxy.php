@@ -59,10 +59,12 @@ class LoginProxy
             throw new InvalidCredentialsException();
         }
 
-        return $this->proxy('password', [
+        $results = $this->proxy('password', [
             'username' => $email,
             'password' => $password . $user->salt
         ]);
+        $results['user_id'] = $user->id;
+        return $results;
     }
 
     /**
