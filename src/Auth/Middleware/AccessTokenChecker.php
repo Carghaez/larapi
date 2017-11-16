@@ -53,6 +53,8 @@ class AccessTokenChecker
      */
     public function handle($request, Closure $next, $guard = 'api')
     {
+        var_dump($guard);
+        dd($request);
         if ($this->auth->guard($guard)->guest()) {
             throw new UnauthorizedHttpException('Challenge');
         }
