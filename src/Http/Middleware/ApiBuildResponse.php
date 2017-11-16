@@ -51,6 +51,8 @@ class ApiBuildResponse
     {
         $response = $next($request);
 
+        dd($response);
+
         if($response->headers->get('content-type') == 'application/json')
         {
             $results = $response->getData(true);
