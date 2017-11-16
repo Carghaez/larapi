@@ -51,7 +51,6 @@ class AccessTokenChecker
      */
     public function handle($request, Closure $next)
     {
-        dd($request);
         if ($this->app->environment() !== 'testing') {
             try {
                 return $this->auth->handle($request, $next, 'api');
