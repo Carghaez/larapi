@@ -17,8 +17,6 @@ use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\AuthenticationException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
-use Illuminate\Contracts\Auth\Factory as Auth;
-
 /**
  * AccessTokenChecker.
  *
@@ -38,7 +36,7 @@ class AccessTokenChecker
      */
     public function __construct(
         Application $app,
-        Auth $auth
+        Authenticate $auth
     ) {
         $this->app = $app;
         $this->auth = $auth;
@@ -51,10 +49,14 @@ class AccessTokenChecker
      * @param  \Closure $next
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = 'api')
+    public function handle($request, Closure $next)
     {
-        if ($this->auth->guard($guard)->guest()) {
-            throw new UnauthorizedHttpException('Challenge');
+        if ($this->app->environment() !== 'testing') {
+            try {
+                return $this->auth->handle($request, $next, 'api');
+            } catch (AuthenticationException $e) {
+                throw new UnauthorizedHttpException('Challenge');
+            }
         }
 
         return $next($request);
