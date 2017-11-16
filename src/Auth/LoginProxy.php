@@ -99,7 +99,7 @@ class LoginProxy
             'scope'         => '*'
         ]);
 
-        dd($data);
+        dd(env('APP_NAME'));
         $response = $this->apiConsumer->post('/oauth/token', $data);
 
         if (!$response->isSuccessful()) {
