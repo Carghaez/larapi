@@ -53,7 +53,7 @@ class AccessTokenChecker
     {
         if ($this->app->environment() !== 'testing') {
             try {
-                return $this->auth->handle($request, $next, 'api');
+                return $this->auth->handle($request, $next, 'auth:api');
             } catch (AuthenticationException $e) {
                 throw new UnauthorizedHttpException('Challenge');
             }
