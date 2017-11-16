@@ -62,6 +62,8 @@ class AuthServiceProvider extends ServiceProvider
             $router->forTransientTokens();
         });
 
+        Passport::enableImplicitGrant();
+
         Passport::tokensExpireIn(Carbon::now()->addMinutes($this->getTokenLifetime()));
 
         Passport::refreshTokensExpireIn(Carbon::now()->addDays(10));
