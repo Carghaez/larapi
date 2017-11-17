@@ -130,6 +130,9 @@ class LoginProxy
      */
     public function logout()
     {
+        $user = $this->auth->user();
+        if (!$user)
+            return;
         $accessToken = $this->auth->user()->token();
 
         $refreshToken = $this->db
