@@ -13,6 +13,7 @@ namespace Carghaez\Larapi\Resource;
 
 use Validator;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 use Optimus\Bruno\LaravelController as BaseController;
@@ -44,6 +45,22 @@ class ResourceController extends BaseController
         if ($validator->fails()) {
             throw new UnprocessableEntityHttpException($validator->errors()->toJson());
         }
+    }
+
+    /**
+     * Create a raw response
+     * @param  mixed  $data
+     * @param  integer $statusCode
+     * @param  array  $headers
+     * @return Illuminate\Http\Response
+     */
+    protected function responseRaw($data, $statusCode = 200, array $headers = [])
+    {
+        if ($data instanceof Arrayable && !$data instanceof JsonSerializable) {
+            $data = $data->toArray();
+        }
+
+        return new Response($data, $statusCode, $headers);
     }
 
     public function __construct()
