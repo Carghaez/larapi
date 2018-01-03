@@ -35,14 +35,14 @@ class ExceptionFormatter extends BaseFormatter
             $data = array_merge([
                 'status' => $statusCode,
                 'code'   => $e->getCode(),
-                'type' => get_class($e),
-                'message'   => $e->getMessage(),
-                'detail' => (string) $e,
+                'type' => json_encode(get_class($e)),
+                'message'   => json_encode($e->getMessage()),
+                'detail' => json_encode((string)$e),
                 'line'   => $e->getLine(),
                 'file'   => $e->getFile()
             ], $data);
         } else {
-            $data['message'] = $e->getMessage();
+            $data['message'] = json_encode($e->getMessage());
         }
         return (object) $data;
     }
