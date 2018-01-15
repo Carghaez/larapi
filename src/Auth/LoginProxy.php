@@ -102,10 +102,7 @@ class LoginProxy
         $response = $this->apiConsumer->post('/oauth/token', $data);
 
         if (!$response->isSuccessful()) {
-            // throw new InvalidCredentialsException();
-            return [
-                'old_refresh' => isset($data['refresh_token'])?$data['refresh_token']:''
-            ];
+            throw new InvalidCredentialsException();
         }
 
         $data_new = json_decode($response->getContent());
@@ -122,8 +119,6 @@ class LoginProxy
         );
 
         return [
-            'old_refresh' => isset($data['refresh_token'])?$data['refresh_token']:'',
-            'refresh_token' => $data_new->refresh_token,
             'access_token' => $data_new->access_token,
             'expires_in' => $data_new->expires_in
         ];
