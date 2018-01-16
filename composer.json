@@ -20,7 +20,7 @@
         }
     ],
     "require": {
-        "laravel/framework": "~5.4",
+        "laravel/framework": "5.4.* || 5.5.*",
         "optimus/distributed-laravel": "~0.1",
         "optimus/bruno": "~3.0",
         "optimus/genie": "~2.0",
