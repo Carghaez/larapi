@@ -37,9 +37,9 @@ class ExceptionFormatter extends BaseFormatter
                 'type'      => get_class($e),
                 'message'   => $e->getMessage(),
                 'code'      => $e->getCode(),
-                'trace'     => $e->getTrace(),
                 'line'      => $e->getLine(),
-                'file'      => $e->getFile()
+                'file'      => $e->getFile(),
+                'trace'     => $e->getTrace()
             ], $data);
         } else {
             $data['status'] = $statusCode;
