@@ -33,8 +33,9 @@ class ApiBuildResponse
 
     protected function is_array_assoc($arr)
     {
-        if (!$arr || [] === $arr)
+        if (!$arr || [] === $arr) {
             return false;
+        }
         return array_keys($arr) !== range(0, count($arr) - 1);
     }
 
@@ -63,16 +64,6 @@ class ApiBuildResponse
                     $error = true;
                     $status = 422;
                 }
-                // if (isset($results['status']) && $results['status'] == 'error') {
-                //     $error = true;
-                //     unset($results['status']);
-                //     if ($response->status() !== 200) {
-                //         $results['status'] = $response->status();
-                //     }
-                //     $results = [
-                //         $results
-                //     ];
-                // }
 
                 $message = '';
                 if (is_string($results)) {
