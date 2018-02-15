@@ -92,9 +92,18 @@ class LoginProxy
      */
     public function proxy($grantType, array $data = [])
     {
+        $password_client = $this->db
+            ->table('oauth_clients')
+            ->where('name', 'Laravel Password Grant Client')
+            ->first();
+
+        if (!$password_client) {
+            throw new HttpException(501, 'Missing OAuth Client');
+        }
+
         $data = array_merge($data, [
-            'client_id'     => env('PASSWORD_CLIENT_ID'),
-            'client_secret' => env('PASSWORD_CLIENT_SECRET'),
+            'client_id'     => $password_client->id,
+            'client_secret' => $password_client->secret,
             'grant_type'    => $grantType,
             'scope'         => '*'
         ]);
