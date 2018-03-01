@@ -74,4 +74,9 @@ class ResourceInfo
     {
         return $this->model->getUpdateRules();
     }
+
+    public function getUpdateExcludedParams()
+    {
+        return $this->model->getUpdateExcludedParams();
+    }
 }

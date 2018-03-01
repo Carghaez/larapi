@@ -22,6 +22,7 @@ class ResourceModel extends Model
 {
     protected $create_rules;
     protected $update_rules;
+    protected $update_excluded_params;
 
     public function getCreateRules()
     {
@@ -31,5 +32,10 @@ class ResourceModel extends Model
     public function getUpdateRules()
     {
         return $this->update_rules;
+    }
+
+    public function getUpdateExcludedParams()
+    {
+        return $this->update_excluded_params;
     }
 }

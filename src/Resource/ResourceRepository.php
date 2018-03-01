@@ -26,7 +26,7 @@ class ResourceRepository extends Repository
         $value = '';
         do {
             $value = str_random($length);
-        } while($this->getWhere($key, $value)->isNotEmpty());
+        } while ($this->getWhere($key, $value)->isNotEmpty());
         return $value;
     }
 
@@ -36,6 +36,16 @@ class ResourceRepository extends Repository
 
     public function getModelName() {
         return (app()->make(ResourceInfo::class))->getName();
+    }
+
+    public function getUpdateExcludedParams()
+    {
+        return (app()->make(ResourceInfo::class))->getUpdateExcludedParams();
+    }
+
+    public function excludeParamsFromData(array $data)
+    {
+        return array_intersect_key($data, array_reverse($this->getUpdateExcludedParams()));
     }
 
     public function create(array $data)
@@ -48,6 +58,9 @@ class ResourceRepository extends Repository
 
     public function update($resource, array $data)
     {
+        if (is_array($this->getUpdateExcludedParams())) {
+            $data = $this->excludeParamsFromData($data);
+        }
         $resource->fill($data);
         $resource->save();
         return $resource;
