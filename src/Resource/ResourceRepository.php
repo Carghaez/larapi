@@ -45,7 +45,7 @@ class ResourceRepository extends Repository
 
     public function excludeParamsFromData(array $data)
     {
-        return array_intersect_key($data, array_reverse($this->getUpdateExcludedParams()));
+        return array_diff_key($data, array_flip($this->getUpdateExcludedParams()));
     }
 
     public function create(array $data)
