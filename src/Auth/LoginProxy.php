@@ -13,6 +13,7 @@ namespace Carghaez\Larapi\Auth;
 
 use App;
 use Carghaez\Larapi\Auth\Exceptions\InvalidCredentialsException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
  * LoginProxy.
