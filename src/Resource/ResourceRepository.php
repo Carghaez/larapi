@@ -21,20 +21,33 @@ use Carghaez\Larapi\Resource\ResourceInfo;
  */
 class ResourceRepository extends Repository
 {
-    protected function str_random_column_unique($key, $length)
+    // 0 = insensitive case
+    // 1 = lower case
+    // 2 = upper case
+    protected function str_random_column_unique($key, $length, $flagCase = 0)
     {
         $value = '';
         do {
             $value = str_random($length);
+            switch ($flagCase) {
+                case 1:
+                    $value = strtolower($value);
+                    break;
+                case 2:
+                    $value = strtoupper($value);
+                    break;
+            }
         } while ($this->getWhere($key, $value)->isNotEmpty());
         return $value;
     }
 
-    public function getModel() {
+    public function getModel()
+    {
         return (app()->make(ResourceInfo::class))->getModel();
     }
 
-    public function getModelName() {
+    public function getModelName()
+    {
         return (app()->make(ResourceInfo::class))->getName();
     }
 
