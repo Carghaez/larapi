@@ -38,7 +38,8 @@ class LoginProxy
      * Constructor.
      *
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->apiConsumer = \App::make('apiconsumer');
         $this->auth = \App::make('auth');
         $this->cookie = \App::make('cookie');
@@ -54,7 +55,7 @@ class LoginProxy
      */
     public function attemptLogin($email, $password)
     {
-        $user = $this->db->table('users')->where('email', $email)->first();
+        $user = $this->db->table('users')->where('email', $email)->orderBy('id', 'desc')->first();
 
         if (is_null($user)) {
             throw new InvalidCredentialsException();
@@ -141,8 +142,9 @@ class LoginProxy
     public function logout()
     {
         $user = $this->auth->user();
-        if (!$user)
+        if (!$user) {
             return;
+        }
         $accessToken = $this->auth->user()->token();
 
         $refreshToken = $this->db
