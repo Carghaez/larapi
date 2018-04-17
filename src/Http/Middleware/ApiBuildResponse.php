@@ -95,7 +95,7 @@ class ApiBuildResponse
                         $response->setData($baseResponse);
                         break;
                     default:
-                        $response = $response->create($baseResponse, $status)
+                        $response = $response->create($baseResponse, $status);
                         break;
                 }
                 break;
