@@ -89,7 +89,15 @@ class ApiBuildResponse
                     'message' => $message,
                     'results' => $results
                 ];
-                $response->setData($baseResponse);
+
+                switch (get_class($response)) {
+                    case 'Illuminate\Http\JsonResponse':
+                        $response->setData($baseResponse);
+                        break;
+                    default:
+                        $response = $response->create($baseResponse, $status)
+                        break;
+                }
                 break;
             default:
                 break;
