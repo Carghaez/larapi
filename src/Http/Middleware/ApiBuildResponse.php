@@ -61,6 +61,7 @@ class ApiBuildResponse
                         $status = $response->status();
                         break;
                     default:
+                        return $response;
                         $results = json_encode($response);
                         $status = $response->getStatusCode();
                         break;
