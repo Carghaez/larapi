@@ -55,10 +55,13 @@ class ApiBuildResponse
         switch($response->headers->get('content-type'))
         {
             case 'application/json':
-                try {
-                    $results = $response->getData(true);
-                } catch(\Exception $e) {
-                    $results = json_encode($response);
+                switch (get_class($response)) {
+                    case 'Illuminate\Http\JsonResponse':
+                        $results = $response->getData(true);
+                        break;
+                    default:
+                        $results = json_encode($response);
+                        break;
                 }
 
                 $error = !$response->isSuccessful();
