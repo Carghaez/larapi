@@ -58,14 +58,15 @@ class ApiBuildResponse
                 switch (get_class($response)) {
                     case 'Illuminate\Http\JsonResponse':
                         $results = $response->getData(true);
+                        $status = $response->status();
                         break;
                     default:
                         $results = json_encode($response);
+                        $status = $response->getStatusCode();
                         break;
                 }
 
                 $error = !$response->isSuccessful();
-                $status = $response->status();
 
                 if (!$error && $this->isValidationError($results)) {
                     $error = true;
