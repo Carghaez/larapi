@@ -12,7 +12,7 @@
 namespace Carghaez\Larapi\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 
 use Carbon\Carbon;
 
@@ -55,7 +55,11 @@ class ApiBuildResponse
         switch($response->headers->get('content-type'))
         {
             case 'application/json':
-                $results = $response->getData(true);
+                try {
+                    $results = $response->getData(true);
+                } catch(\Exception $e) {
+                    $results = json_encode($response);
+                }
 
                 $error = !$response->isSuccessful();
                 $status = $response->status();
