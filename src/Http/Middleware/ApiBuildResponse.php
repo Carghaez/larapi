@@ -95,7 +95,8 @@ class ApiBuildResponse
                         $response->setData($baseResponse);
                         break;
                     default:
-                        $response = $response->create((object)$baseResponse, $status);
+                        $baseResponse = json_encode($baseResponse);
+                        $response = $response->create($baseResponse, $status);
                         break;
                 }
                 break;
