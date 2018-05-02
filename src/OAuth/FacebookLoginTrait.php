@@ -4,6 +4,8 @@ namespace Carghaez\Larapi\OAuth;
 use Illuminate\Http\Request;
 use League\OAuth2\Server\Exception\OAuthServerException;
 
+use Socialite;
+
 trait FacebookLoginTrait
 {
     /**
