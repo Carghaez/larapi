@@ -66,6 +66,26 @@ class LoginProxy
             'password' => $password . $user->salt
         ]);
         $results['user_id'] = $user->id;
+
+        return $results;
+    }
+
+    /**
+     * Attempt to create an access token using user credentials.
+     *
+     * @param string $email
+     * @param string $password
+     */
+    public function attemptSocialLogin($driver, $token)
+    {
+        if ($driver !== 'facebook') {
+            throw new InvalidCredentialsException();
+        }
+
+        $results = $this->proxy($driver . '_login', [
+            'social_token' => $token,
+        ]);
+
         return $results;
     }
 
@@ -116,12 +136,12 @@ class LoginProxy
             throw new InvalidCredentialsException($response->getContent());
         }
 
-        $data_new = json_decode($response->getContent());
+        $result = json_decode($response->getContent());
 
         // Create a refresh token cookie
         $this->cookie->queue(
             self::REFRESH_TOKEN,
-            $data_new->refresh_token,
+            $result->refresh_token,
             864000, // 10 days
             null,
             null,
@@ -130,8 +150,8 @@ class LoginProxy
         );
 
         return [
-            'access_token' => $data_new->access_token,
-            'expires_in' => $data_new->expires_in
+            'access_token' => $result->access_token,
+            'expires_in' => $result->expires_in
         ];
     }
 

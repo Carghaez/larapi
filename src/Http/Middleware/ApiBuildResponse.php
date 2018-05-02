@@ -52,8 +52,7 @@ class ApiBuildResponse
     {
         $response = $next($request);
 
-        switch($response->headers->get('content-type'))
-        {
+        switch ($response->headers->get('content-type')) {
             case 'application/json':
                 switch (get_class($response)) {
                     case 'Illuminate\Http\JsonResponse':
