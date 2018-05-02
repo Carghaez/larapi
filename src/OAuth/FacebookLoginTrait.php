@@ -46,7 +46,7 @@ trait FacebookLoginTrait
                     throw OAuthServerException::serverError('Unable to determine user facebook model from configuration');
                 }
 
-                $profileFacebook = $fbModel::find($fbUser->id)->first();
+                $profileFacebook = $fbModel::where('facebook_id', $fbUser->id)->first();
 
                 if (empty($profileFacebook)) {
                     throw OAuthServerException::serverError('Unable to determine user from facebook id');
@@ -55,7 +55,7 @@ trait FacebookLoginTrait
                 $userModel = config('auth.providers.users.model');
 
                 // TODO: questo è un hack, migliorare!
-                $user = $userModel::where('facebook_id', $fbUser->user_id)->first();
+                $user = $userModel::find($fbUser->user_id)->first();
 
                 return $user;
             }
