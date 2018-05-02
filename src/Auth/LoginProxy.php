@@ -56,7 +56,6 @@ class LoginProxy
     public function attemptLogin($email, $password)
     {
         $user = $this->db->table('users')->where('email', $email)->orderBy('id', 'desc')->first();
-
         if (is_null($user)) {
             throw new InvalidCredentialsException();
         }
@@ -76,15 +75,21 @@ class LoginProxy
      * @param string $email
      * @param string $password
      */
-    public function attemptSocialLogin($driver, $token)
+    public function attemptSocialLogin($driver, $email, $token)
     {
         if ($driver !== 'facebook') {
+            throw new InvalidCredentialsException();
+        }
+
+        $user = $this->db->table('users')->where('email', $email)->orderBy('id', 'desc')->first();
+        if (is_null($user)) {
             throw new InvalidCredentialsException();
         }
 
         $results = $this->proxy($driver . '_login', [
             'social_token' => $token,
         ]);
+        $results['user_id'] = $user->id;
 
         return $results;
     }
