@@ -55,7 +55,7 @@ trait FacebookLoginTrait
                 $userModel = config('auth.providers.users.model');
 
                 // TODO: questo è un hack, migliorare!
-                $user = $userModel::find($fbUser->user_id)->first();
+                $user = $userModel::find($profileFacebook->user_id)->first();
 
                 return $user;
             }
