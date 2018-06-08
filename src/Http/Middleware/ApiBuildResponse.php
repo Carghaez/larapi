@@ -74,7 +74,7 @@ class ApiBuildResponse
                 }
 
                 $message = '';
-                $meta = [];
+                $meta = null;
                 if (is_string($results)) {
                     $message = $results;
                     $results = null;
