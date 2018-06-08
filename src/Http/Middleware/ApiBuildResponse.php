@@ -74,6 +74,7 @@ class ApiBuildResponse
                 }
 
                 $message = '';
+                $meta = [];
                 if (is_string($results)) {
                     $message = $results;
                     $results = null;
@@ -82,11 +83,16 @@ class ApiBuildResponse
                     $message = $results['message'];
                     $results = $results['data'];
                 }
+                if (isset($results['meta'])) {
+                    $meta = $results['meta'];
+                    unset($results['meta']);
+                }
 
                 $baseResponse = [
                     'error' => $error,
                     'status' => $status,
                     'message' => $message,
+                    'meta' => $meta,
                     'results' => $results
                 ];
 
