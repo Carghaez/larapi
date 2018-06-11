@@ -86,6 +86,11 @@ class ApiBuildResponse
                 if (isset($results['meta'])) {
                     $meta = $results['meta'];
                     unset($results['meta']);
+                    if (isset($results['data'])) {
+                        $results = $results['data'];
+                    } elseif (isset($results['results'])) {
+                        $results = $results['results'];
+                    }
                 }
 
                 $baseResponse = [
