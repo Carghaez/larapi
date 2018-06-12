@@ -83,9 +83,14 @@ class ApiBuildResponse
                     $message = $results['message'];
                     $results = $results['data'];
                 }
-                if (isset($results['meta'])) {
-                    $meta = $results['meta'];
-                    unset($results['meta']);
+                if (isset($results['metaQuery']) || isset($results['meta'])) {
+                    if (isset($results['metaQuery'])) {
+                        $meta = $results['meta'];
+                        unset($results['meta']);
+                    } else {
+                        $meta = $results['metaQuery'];
+                        unset($results['metaQuery']);
+                    }
                     if (isset($results['data'])) {
                         $results = $results['data'];
                     } elseif (isset($results['results'])) {
@@ -97,7 +102,7 @@ class ApiBuildResponse
                     'error' => $error,
                     'status' => $status,
                     'message' => $message,
-                    'meta' => $meta,
+                    'metaQuery' => $meta,
                     'results' => $results
                 ];
 
