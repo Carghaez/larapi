@@ -84,7 +84,7 @@ class ApiBuildResponse
                     $results = $results['data'];
                 }
                 if (isset($results['metaQuery']) || isset($results['meta'])) {
-                    if (isset($results['metaQuery'])) {
+                    if (isset($results['meta'])) {
                         $meta = $results['meta'];
                         unset($results['meta']);
                     } else {
